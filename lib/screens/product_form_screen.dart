@@ -134,9 +134,19 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
               ElevatedButton(
                 onPressed: _guardar,
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  backgroundColor: _esEdicion
+                      ? Colors.amber
+                      : Colors.green,
+                  foregroundColor: _esEdicion
+                      ? Colors.black
+                      : Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                  ),
                 ),
-                child: Text(_esEdicion ? 'Guardar Cambios' : 'Agregar Producto'),
+                child: Text(
+                  _esEdicion ? 'Guardar Cambios' : 'Agregar Producto',
+                ),
               ),
             ],
           ),
