@@ -22,6 +22,11 @@ class MyApp extends StatelessWidget {
 
         appBarTheme: const AppBarTheme(
           centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.w900,
+            color: Colors.black,
+          ),
         ),
 
         floatingActionButtonTheme:
