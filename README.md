@@ -1,70 +1,83 @@
-# Gestor de Inventario - MVP (Flutter)
+# Gestor de Inventario - Bodega Pequeño Mundo (Flutter MVP)
 
-Aplicación Flutter mínima viable (MVP) para la gestión y demostración práctica de desarrollo móvil, correspondiente a la investigación del curso **Desarrollo de Software IV (UCR)**.
-
----
-
-## 🎯 Alcance del MVP
-
-El MVP se enfoca en la funcionalidad esencial requerida por la rúbrica de evaluación, reduciendo sobrecarga visual y capas complejas de diseño para facilitar su entendimiento y exposición en clase:
-
-1. **Pantalla Principal (`HomeScreen`)**:
-   - Listado reactivo de productos en memoria (`ListView.builder`).
-   - Estado vacío cuando no existen elementos.
-   - Acciones directas de edición y eliminación con confirmación.
-   - Botón flotante (`FloatingActionButton`) para registrar nuevos productos.
-
-2. **Formulario de Producto (`ProductFormScreen`)**:
-   - Cuatro campos de entrada: Nombre, Cantidad, Precio y Categoría.
-   - Validaciones de campos obligatorios y números mayores a cero.
-   - Modo dual: Crear nuevo producto o Editar existente.
-   - Navegación estándar mediante `Navigator.push` y `Navigator.pop`.
-   - Retroalimentación visual inmediata con `SnackBar`.
+Aplicación móvil y multiplataforma desarrollada en **Flutter** para la demostración práctica e investigación del curso **Desarrollo de Software IV (UCR - Sede Regional del Pacífico)**.
 
 ---
 
-## 📋 Cumplimiento de Requisitos de la Rúbrica
+## 🎯 Alcance y Funcionalidad del MVP
 
-| ID | Requisito | Implementación en el MVP |
-|---|---|---|
-| **DE-01** | Proyecto propio y ejecutable | Código Flutter compatible con Web (Edge/Chrome) y Escritorio (Windows). |
-| **DE-02** | Interfaz móvil (≥ 2 pantallas) | `HomeScreen` (catálogo/listado) y `ProductFormScreen` (formulario). |
-| **DE-03** | Interacción y validación | 4 campos validados con mensajes de error y confirmación visual (`SnackBar`). |
-| **DE-04** | Datos dinámicos | Manejo de estado en memoria con operaciones CRUD (Crear, Leer, Actualizar, Borrar). |
-| **DE-05** | Explicación técnica clara | Arquitectura limpia dividida en `models/`, `screens/` y `widgets/`. |
-| **DE-06** | Reproducibilidad | Instrucciones claras de instalación y comandos de ejecución. |
+La aplicación implementa un sistema reactivo y responsivo de control de inventario adaptado con la identidad corporativa de **Pequeño Mundo**:
+
+1. **Dashboard de Inicio (`HomeScreen`)**:
+   - Visualización de marca oficial con logotipo institucional.
+   - Tarjetas de métricas en tiempo real en fila responsiva: **Total de Referencias**, **Unidades en Stock** y **Valor Total Estimado del Inventario (₡)**.
+   - Accesos directos a registro de productos e inventario general.
+
+2. **Catálogo de Inventario (`HomeScreen` - Pestaña Inventario)**:
+   - **Filtro dinámico por categorías** (Electrónica, Ropa, Alimentos, Herramientas, Papelería, Otros).
+   - **Selector de vista adaptativa**:
+     - *Vista Tarjetas (Mobile-First)*: Diseño optimizado para teléfonos con avatar de stock, badge de categoría, precio en colones y botones táctiles de editar/eliminar.
+     - *Vista Tabla*: Cuadrícula completa de datos con desplazamiento horizontal táctil.
+   - Diálogo de confirmación para eliminación segura.
+   - Botón flotante (`FloatingActionButton`) para agregar nuevos productos.
+
+3. **Formulario de Producto (`ProductFormScreen`)**:
+   - Cuatro campos tipados con validación en tiempo real:
+     - Nombre del producto (texto no vacío).
+     - Cantidad en stock (entero $\ge 0$).
+     - Precio unitario en colones (numérico $\ge 0$).
+     - Categoría (selección obligatoria).
+   - Modo dual automático: **Nuevo Producto** o **Editar Producto**.
+   - Notificaciones emergentes con `SnackBar` tras cada operación.
 
 ---
 
-## 📂 Estructura del Código
+## 📋 Cumplimiento de Requisitos de la Rúbrica (UCR)
+
+| ID | Criterio de Evaluación | Estado | Implementación en el Proyecto |
+|---|---|:---:|---|
+| **DE-01** | Proyecto propio y ejecutable | ✅ | Compila sin errores (`flutter analyze: 0 issues`). Corre en Web (Edge/Chrome), Windows y Android. |
+| **DE-02** | Interfaz móvil ($\ge$ 2 pantallas) | ✅ | Navegación desacoplada entre `HomeScreen` y `ProductFormScreen` mediante `Navigator.push` y `Navigator.pop`. |
+| **DE-03** | Interacción y validación | ✅ | Formulario con validaciones tipadas (`_formKey`), teclado numérico y alertas reactivas. |
+| **DE-04** | Manejo de datos dinámicos | ✅ | Colección reactiva en memoria con operaciones CRUD completas (Crear, Leer, Actualizar, Eliminar). |
+| **DE-05** | Arquitectura y explicación técnica | ✅ | Modularidad estricta en capas: `models/`, `screens/`, `widgets/` y `theme/`. |
+| **DE-06** | Reproducibilidad | ✅ | Documentación detallada de ejecución, dependencias y arquitectura técnica en `DOCUMENTO_TECNICO_MVP.md`. |
+
+---
+
+## 📂 Organización del Código Fuente
 
 ```text
 lib/
-├── main.dart                   # Punto de entrada de la aplicación y MaterialApp
+├── main.dart                   # Inicialización, configuración de MaterialApp y tema global
 ├── models/
-│   └── product.dart            # Modelo de datos Producto
+│   └── product.dart            # Entidad inmutable del dominio (Product)
 ├── screens/
-│   ├── home_screen.dart        # Pantalla principal: Listado y gestión de estado
-│   └── product_form_screen.dart # Pantalla de formulario: Creación / Edición
+│   ├── home_screen.dart        # Dashboard de métricas, catálogo y lógica reactiva de estado
+│   └── product_form_screen.dart # Formulario de captura con validaciones de negocio
+├── theme/
+│   └── app_colors.dart         # Paleta de colores oficial Pequeño Mundo (#E00614)
 └── widgets/
-    └── product_card.dart       # Componente reutilizable para cada elemento
+    └── product_card.dart       # Componente visual reutilizable para tarjetas móviles
 ```
 
 ---
 
 ## 🚀 Instrucciones de Ejecución
 
-1. **Obtener dependencias:**
+1. **Instalar dependencias:**
    ```bash
    flutter pub get
    ```
 
-2. **Ejecutar en Navegador (Edge):**
+2. **Ejecutar en Navegador (Edge / Web):**
    ```bash
    flutter run -d edge
    ```
+   *(Tip para presentación: en Edge presiona `F12` y activa la vista de emulación móvil `Ctrl + Shift + M`).*
 
-3. **Ejecutar en Escritorio (Windows):**
+3. **Compilar APK para Android (cuando se requiera):**
    ```bash
-   flutter run -d windows
+   flutter build apk --release
    ```
+   *El instalador se generará en `build/app/outputs/flutter-apk/app-release.apk`.*
