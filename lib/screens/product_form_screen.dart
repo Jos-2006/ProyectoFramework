@@ -106,7 +106,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
               TextFormField(
                 controller: _precioCtrl,
                 decoration: const InputDecoration(
-                  labelText: 'Precio (USD)',
+                  labelText: 'Precio (₡)',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),

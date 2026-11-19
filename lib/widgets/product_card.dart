@@ -16,33 +16,42 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      child: ListTile(
-        title: Text(
-          producto.nombre,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+      margin : const EdgeInsets.symmetric(
+        horizontal: 12, 
+        vertical: 6,
         ),
-        subtitle: Text('${producto.categoria} • Cantidad: ${producto.cantidad}'),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              '\$${producto.precio.toStringAsFixed(2)}',
-              style: const TextStyle(fontWeight: FontWeight.w600),
+        child: ListTile(
+          leading: CircleAvatar(
+            child: Text(producto.cantidad.toString()),
+          ),
+          title: Text(
+            producto.nombre,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
             ),
-            IconButton(
-              icon: const Icon(Icons.edit, size: 20),
-              tooltip: 'Editar',
-              onPressed: onEdit,
-            ),
-            IconButton(
-              icon: const Icon(Icons.delete, size: 20),
-              tooltip: 'Eliminar',
-              onPressed: onDelete,
-            ),
-          ],
+          ),
+          subtitle: Text(
+            '${producto.categoria}: ₡${producto.precio.toStringAsFixed(2)}',
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.edit),
+                  onPressed: onEdit,
+                  tooltip: 'Editar',
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                ),
+                onPressed: onDelete,
+                tooltip: 'Eliminar',
+              ),
+            ],
+          ),
         ),
-      ),
     );
   }
 }
